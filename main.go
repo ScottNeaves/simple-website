@@ -150,7 +150,7 @@ func getPageMeta(fi os.FileInfo) (string, string) {
 func writeIndex() {
 	var b bytes.Buffer
 	b.WriteString(getLayout(getSiteTitle()))
-	b.Write(blackfriday.MarkdownBasic(getFile("_sections/header.md")))
+	b.Write(blackfriday.MarkdownCommon(getFile("_sections/header.md")))
 	writePostsSection(&b)
 	writePagesSection(&b)
 	b.WriteString("</div></body></html>")
@@ -201,7 +201,7 @@ func writePosts() {
 		b.WriteString(getLayout(title + " – " + getSiteTitle()))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p>")
 		b.WriteString("<p class=\"date\">" + date + "</p>")
-		b.Write(blackfriday.MarkdownBasic(getFile("_posts/" + posts[i].Name())))
+		b.Write(blackfriday.MarkdownCommon(getFile("_posts/" + posts[i].Name())))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p></div></body></html>")
 
 		writeFile("posts/" + id, b)
@@ -240,7 +240,7 @@ func writePages() {
 		var b bytes.Buffer
 		b.WriteString(getLayout(title + " – " + getSiteTitle()))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p>")
-		b.Write(blackfriday.MarkdownBasic(getFile("_pages/" + pages[i].Name())))
+		b.Write(blackfriday.MarkdownCommon(getFile("_pages/" + pages[i].Name())))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p></div></body></html>")
 
 		writeFile("pages/" + fileName, b)
