@@ -154,7 +154,7 @@ func writeIndex() {
 	writePostsSection(&b)
 	writePagesSection(&b)
 	b.WriteString("</div></body></html>")
-	writeFile("index", b)
+	writeFile("site/index", b)
 }
 
 func writePostsSection(b *bytes.Buffer) {
@@ -204,7 +204,7 @@ func writePosts() {
 		b.Write(blackfriday.MarkdownCommon(getFile("_posts/" + posts[i].Name())))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p></div></body></html>")
 
-		writeFile("posts/" + id, b)
+		writeFile("site/posts/" + id, b)
 	}
 }
 
@@ -228,7 +228,7 @@ func writePostsPage() {
 
 	b.WriteString("</ul></nav><p><a href=\"index.html\">←</a></p>")
 	b.WriteString("</div></body></html>")
-	writeFile("all-posts", b)
+	writeFile("site/all-posts", b)
 }
 
 func writePages() {
@@ -243,7 +243,7 @@ func writePages() {
 		b.Write(blackfriday.MarkdownCommon(getFile("_pages/" + pages[i].Name())))
 		b.WriteString("<p><a href=\"../index.html\">←</a></p></div></body></html>")
 
-		writeFile("pages/" + fileName, b)
+		writeFile("site/pages/" + fileName, b)
 	}
 }
 
@@ -285,8 +285,9 @@ func createFilesAndDirs() {
 		}
 	}
 
-	os.MkdirAll("posts", 0755)
-	os.MkdirAll("pages", 0755)
+	os.MkdirAll("site", 0755)
+	os.MkdirAll("site/posts", 0755)
+	os.MkdirAll("site/pages", 0755)
 }
 
 func main() {
