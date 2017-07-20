@@ -263,7 +263,7 @@ func createFilesAndDirs() {
 		}
 	}
 
-	if _, err := os.Stat("posts"); os.IsNotExist(err) {
+	if _, err := os.Stat("site/posts"); os.IsNotExist(err) {
 		err := ioutil.WriteFile(
 			"_posts/" + time.Now().Format("2006-01-02") + "-initial-post.md",
 			[]byte("# Initial post\n\nThis is the initial post."),
@@ -274,7 +274,7 @@ func createFilesAndDirs() {
 		}
 	}
 
-	if _, err := os.Stat("pages"); os.IsNotExist(err) {
+	if _, err := os.Stat("site/pages"); os.IsNotExist(err) {
 		err := ioutil.WriteFile(
 			"_pages/about.md",
 			[]byte("# About\n\nThis is the about page."),
